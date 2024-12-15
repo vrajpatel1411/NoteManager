@@ -41,6 +41,19 @@ The **NoteManager** application is a RESTful service designed to allow users to 
 
 ---
 
+## Choice of Framework, Database, and Tools
+- **Backend Framework**: Spring Boot
+Spring Boot was chosen due to its simplicity, ease of setup, and extensive support for building scalable RESTful applications. It enables rapid development by offering a wide range of auto-configurations and integrations with various tools, such as Spring Security for authentication and Spring Data JPA for database access.
+
+- **Database**: PostgreSQL
+PostgreSQL was selected as the relational database for this application because of its robustness, data integrity, and advanced querying capabilities. It is highly compatible with Spring Data JPA, allowing seamless integration into the Spring Boot application.
+
+- **Security**: Spring Security & JWT
+Spring Security is used to handle authentication and authorization in the application. JSON Web Tokens (JWT) are utilized for stateless authentication, allowing users to securely log in and perform actions on the notes with minimal server-side storage of session information.
+
+- **Testing**: JUnit & Spring Boot Test
+JUnit and Spring Boot Test are used for unit testing and integration testing of the application. These tools ensure that the application logic is correct and that the endpoints behave as expected under various scenarios.
+
 ## System Requirements
 
 - **Java**: JDK 17 or higher
@@ -61,6 +74,7 @@ cd notemanager
 - Set up a PostgreSQL database.
 - Update the database credentials in `application.properties` or `application.yml`:
 
+(Optional if you want to setup your own database)
 ```properties
 spring.datasource.url=your_databaseCredential
 spring.datasource.username=your_username
@@ -72,6 +86,12 @@ spring.jpa.hibernate.ddl-auto=update
 ```bash
 mvn clean install
 mvn spring-boot:run
+```
+
+### 3. Running Tests
+To run the unit tests for the application, use the following command:
+```bash
+mvn test
 ```
 
 The application will start at `http://localhost:8080`.
