@@ -186,17 +186,6 @@ The NoteManager API provides endpoints for user authentication and note manageme
   Authorization: Bearer <token>
   ```
 
----
-
-## Error Handling
-
-- **400 Bad Request**: Invalid input.
-- **401 Unauthorized**: Authentication required or invalid token.
-- **404 Not Found**: Resource not found.
-- **500 Internal Server Error**: Unexpected errors.
-
-
----
 
 ## Development
 
