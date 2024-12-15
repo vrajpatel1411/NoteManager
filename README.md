@@ -1,0 +1,206 @@
+# NoteManager Application
+
+## Table of Contents
+
+- [About the Project](#about-the-project)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [System Requirements](#system-requirements)
+- [Installation](#installation)
+- [API Documentation](#api-documentation)
+  - [Authentication APIs](#authentication-apis)
+  - [Note Management APIs](#note-management-apis)
+- [Authorization](#authorization)
+- [Development](#development)
+  - [Folder Structure](#folder-structure)
+- [Contact](#contact)
+
+---
+
+## About the Project
+
+The **NoteManager** application is a RESTful service designed to allow users to manage their notes efficiently. With built-in user authentication, the application ensures that only authorized users can create, read, update, delete, and share notes.
+
+---
+
+## Features
+
+- **User Authentication**: Secure login and signup with JWT-based authentication.
+- **Note Management**: Create, read, update, and delete notes.
+- **Search**: Search notes by title or content.
+- **Sharing**: Share notes with other users via email.
+
+---
+
+## Technologies Used
+
+- **Backend Framework**: Spring Boot
+- **Database**: PostgreSQL
+- **Security**: Spring Security, JWT (JSON Web Tokens)
+- **Testing**: JUnit, Spring Boot Test
+
+---
+
+## System Requirements
+
+- **Java**: JDK 17 or higher
+- **Maven**: Version 3.8.0 or higher
+- **PostgreSQL**: Version 13 or higher
+
+---
+
+## Installation
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/vrajpatel1411/NoteManager.git
+cd notemanager
+```
+
+### 2. Configure the Database
+- Set up a PostgreSQL database.
+- Update the database credentials in `application.properties` or `application.yml`:
+
+```properties
+spring.datasource.url=your_databaseCredential
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+spring.jpa.hibernate.ddl-auto=update
+```
+
+### 3. Build and Run the Application
+```bash
+mvn clean install
+mvn spring-boot:run
+```
+
+The application will start at `http://localhost:8080`.
+
+---
+
+## API Documentation
+
+The NoteManager API provides endpoints for user authentication and note management. All APIs require JSON request/response format.
+
+### Authentication APIs
+
+1. **POST `/api/auth/signup`**
+   - **Description**: Registers a new user.
+   - **Request Body**:
+     ```json
+     {
+       "email": "user@example.com",
+       "password": "password123"
+     }
+     ```
+
+2. **POST `/api/auth/login`**
+   - **Description**: Logs in a user and returns a JWT token.
+   - **Request Body**:
+     ```json
+     {
+       "email": "user@example.com",
+       "password": "password123"
+     }
+     ```
+   - **Response**:
+     ```json
+     {
+       "token": "jwt_token"
+     }
+     ```
+
+### Note Management APIs
+
+**Note**: All endpoints require an `Authorization` header with the JWT token: `Authorization: Bearer <token>`
+
+1. **POST `/api/notes/`**
+   - **Description**: Creates a new note.
+   - **Request Body**:
+     ```json
+     {
+       "title": "My Note",
+       "content": "This is the content of the note."
+     }
+     ```
+
+2. **GET `/api/notes/`**
+   - **Description**: Retrieves all notes created by the authenticated user.
+
+3. **GET `/api/notes/{id}`**
+   - **Description**: Retrieves a specific note by its unique ID.
+
+4. **PUT `/api/notes/{id}`**
+   - **Description**: Updates an existing note's title or content.
+   - **Request Body**:
+     ```json
+     {
+       "title": "Updated Title",
+       "content": "Updated Content"
+     }
+     ```
+
+5. **DELETE `/api/notes/{id}`**
+   - **Description**: Deletes a specific note by its unique ID.
+
+6. **POST `/api/notes/{id}/share`**
+   - **Description**: Shares a note with another user via email.
+   - **Request Body**:
+     ```json
+     {
+       "email": "recipient@example.com"
+     }
+     ```
+
+7. **GET `/api/notes/search?q=`**
+   - **Description**: Searches for notes containing the query string in the title or content.
+   - **Query Parameter**: `q` - The search term.
+
+---
+
+## Authorization
+
+- **JWT Token**: Use the `/api/auth/login` endpoint to retrieve a token.
+- Include the token in the `Authorization` header for all note management requests:
+  ```
+  Authorization: Bearer <token>
+  ```
+
+---
+
+## Error Handling
+
+- **400 Bad Request**: Invalid input.
+- **401 Unauthorized**: Authentication required or invalid token.
+- **404 Not Found**: Resource not found.
+- **500 Internal Server Error**: Unexpected errors.
+
+
+---
+
+## Development
+
+### Folder Structure
+
+```
+notemanager/
+├── src/
+│   ├── main/
+│   │   ├── java/org/vrajpatel/notemanager/
+│   │   │   ├── controller/
+│   │   │   ├── service/
+│   │   │   ├── repository/
+│   │   │   ├── model/
+│   │   │   ├── exception/
+│   │   ├── resources/
+│   │       ├── application.properties
+│   ├── test/
+```
+
+
+## Contact
+
+**Vraj Patel**  
+- Email: pvraj1411@gmail.com
+- LinkedIn: [Vraj Patel](https://linkedin.com/in/vrajpatel)
+- Portfolio : www.vrajpatel.dev
