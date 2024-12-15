@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "dbdc7bb7-61c9-44a5-b216-50f47922d1a2",
+		"name": "NoteManager",
+		"description": "These endpoints allow users to sign up and log in to the application, providing access to the NoteManager's features.\n\n1. **POST** **`/api/auth/login`**\n    \n    - **Description:** Logs in a user and returns a JWT token for authenticated access.\n        \n    - Body :  \n        `{   \"email\": \"user@example.com\",   \"password\": \"password123\"   }`\n        \n2. **POST** **`/api/auth/signup`**\n    \n    - **Description:** Registers a new user to the application.\n        \n    - Body : `{   \"email\": \"user@example.com\",   \"password\": \"password123\"   }`\n        \n\n### **Note Management APIs**\n\nThese endpoints allow users to create, read, update, delete, and share notes.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26665679"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"pvraj1411@gmail.com\",\r\n    \"password\":\"vraj@1411\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// {\r\n//     \"email\":\"pvraj1411@gmail.com\",\r\n//     \"password\":\"vraj@1411\"\r\n// }\r\n\r\n{\r\n    \"email\":\"vraj.patel.12390@gmail.com\",\r\n    \"password\":\"vraj@1411\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/auth/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Note",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwt}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n  \"title\": \"Movies 2\",\r\n  \"content\": \"Movie Schedule for tomorrow 10:00pm\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/notes/"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all notes",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "get Note By Id",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update Note By Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwt}}"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\" : \"Do a maths homework\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/notes/2602"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Note",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Share  a Note with User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{jwt}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"pvraj1411@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/notes/2602/share"
+			},
+			"response": []
+		},
+		{
+			"name": "Search the Note",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
